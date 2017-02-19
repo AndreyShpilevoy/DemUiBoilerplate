@@ -10,9 +10,9 @@ const debug = process.env.BABEL_ENV==='production' ? false : true;
 
 const entryPoints = {
   vendor: [
+    'babel-polyfill',
     'aesthetic',
     'aesthetic-adapter-jss',
-    'babel-polyfill',
     'jss',
     'jss-camel-case',
     'jss-default-unit',

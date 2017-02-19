@@ -3,12 +3,7 @@ import { ThemeProvider } from 'aesthetic';
 
 const Presentation = ({children, theme}) => (
     <ThemeProvider name={theme}>
-        <div>
-            <span>{'Hello world'}</span>
-            <ThemeProvider name={theme}>
-                {children}
-            </ThemeProvider>
-        </div>
+        {children}
     </ThemeProvider>
 );
 
