@@ -1,11 +1,12 @@
 import React, {PropTypes} from 'react';
 import Label from 'components/Label';
 import Row from 'components/Row';
+import Hidden from 'components/Hidden';
 
 const Presentation = ({children}) => (
     <div>
         <Row>
-            <Label>{ 'default test' }</Label>
+            <Hidden>{ 'default test' }</Hidden>
         </Row>
         {children}
         <Row>

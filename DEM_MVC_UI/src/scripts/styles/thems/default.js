@@ -1,32 +1,37 @@
 const defaultTheme = 	{
     grid: {
-        containers: {
-            xs: {
+        containers: [
+            {
+                size: 'xs',
                 min: 'min-width: 0px',
                 max: 'min-width: 575px',
-                container: '100%'
+                width: '100%'
             },
-            sm: {
+            {
+                size: 'sm',
                 min: 'min-width: 576px',
                 max: 'min-width: 767px',
-                container: '558px'
+                width: '558px'
             },
-            md: {
+            {
+                size: 'md',
                 min: 'min-width: 768px',
                 max: 'min-width: 991px',
-                container: '720px'
+                width: '720px'
             },
-            lg: {
+            {
+                size: 'lg',
                 min: 'min-width: 992px',
                 max: 'min-width: 1199px',
-                container: '960px'
+                width: '960px'
             },
-            xl: {
+            {
+                size: 'xl',
                 min: 'min-width: 1200px',
                 max: 'min-width: 999999999px',
-                container: '1140px'
+                width: '1140px'
             },
-        }
+        ]
     },
     height: 2,
     color: 'red'
