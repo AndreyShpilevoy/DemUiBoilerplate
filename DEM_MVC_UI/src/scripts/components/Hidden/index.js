@@ -2,12 +2,10 @@ import React, { PropTypes } from 'react';
 import { ClassNamesPropType } from 'aesthetic';
 import styler from 'styles/styler';
 
-export const constructClassNames = (sizesArray, classNames) => {
-    return sizesArray
-        .filter(size => size.direction === 'up' || size.direction === 'down' || size.direction === 'exact')
+export const constructClassNames = (sizesArray, classNames) =>
+    sizesArray.filter(size => size.direction === 'up' || size.direction === 'down' || size.direction === 'exact')
         .map((size) => `hidden-${ size.direction }-${ size.name }`)
         .reduce((previouse, current) => `${ previouse } ${ classNames[ current ] }`, '');
-};
 
 const Hidden = ({ xs, sm, md, lg, xl, children, classNames }) => {
     const classes = constructClassNames([
@@ -37,11 +35,11 @@ Hidden.propTypes = {
 
 export const constructStylesFromTheme = ({grid}) =>
     grid.containers.reduce((previouse, current) => (
-        {
+        Object.assign({}, previouse, {
             [ `@media (${ current.min })` ]: { [ `hidden-up-${ current.size }` ]: { display: 'none' } },
             [ `@media (${ current.max })` ]: { [ `hidden-down-${ current.size }` ]: { display: 'none' } },
             [ `@media (${ current.min }) and (${ current.max })` ]: { [ `hidden-exact-${ current.size }` ]: { display: 'none' } }
-        }
+        })
     ), {});
 
 export default styler((theme) => (constructStylesFromTheme(theme)))(Hidden);

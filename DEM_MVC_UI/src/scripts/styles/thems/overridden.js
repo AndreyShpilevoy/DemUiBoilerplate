@@ -1,6 +1,3 @@
-const overriddenTheme = 	{
-    height: 2,
-    color: 'green'
-};
+const overriddenTheme = {};
 
 export default overriddenTheme;

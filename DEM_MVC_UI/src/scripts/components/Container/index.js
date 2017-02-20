@@ -3,13 +3,10 @@ import { ClassNamesPropType } from 'aesthetic';
 import styler from 'styles/styler';
 
 
-const Container = ({ fluid, children, classNames }) => {
-  return (
+const Container = ({ fluid, children, classNames }) =>
     <div className={fluid ? `${classNames.container} fluid` : classNames.container}>
       {children}
-    </div>
-  );
-};
+    </div>;
 
 const {bool, node} = PropTypes;
 Container.propTypes = {
@@ -20,7 +17,7 @@ Container.propTypes = {
 
 export const constructStylesFromTheme = ({grid}) =>
     grid.containers.reduce((previouse, current) => (
-        {
+        Object.assign({}, previouse, {
             [ `@media (${ current.min })` ]: {
                 container: {
                     width: current.width,
@@ -30,7 +27,7 @@ export const constructStylesFromTheme = ({grid}) =>
                     }
                 }
             }
-        }
+        })
     ), {});
 
 export default styler((theme) => (constructStylesFromTheme(theme)))(Container);

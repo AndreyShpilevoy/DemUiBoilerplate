@@ -1,4 +1,4 @@
-const defaultTheme = 	{
+const defaultTheme = {
     grid: {
         containers: [
             {
@@ -32,9 +32,7 @@ const defaultTheme = 	{
                 width: '1140px'
             },
         ]
-    },
-    height: 2,
-    color: 'red'
+    }
 };
 
 export default defaultTheme;

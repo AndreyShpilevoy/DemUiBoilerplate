@@ -8,7 +8,7 @@ import jssVendorPrefixer from 'jss-vendor-prefixer';
 import jssPropsSort from 'jss-props-sort';
 
 const defaultUnits = {
-	'height': 'rem'
+    'height': 'rem'
 };
 
 jss.use(jssExtend());
