@@ -75,10 +75,10 @@
     "react-hot-loader": "3.0.0-beta.6",
     "redux-immutable-state-invariant": "1.2.4",
     "redux-mock-store": "1.2.2",
-    "rimraf": "2.5.4",
+    "rimraf": "2.6.0",
     "url-loader": "0.5.7",
     "webpack": "2.2.1",
-    "webpack-dev-middleware": "1.10.0",
+    "webpack-dev-middleware": "1.10.1",
     "webpack-hot-middleware": "2.17.0"
   },
   "dependencies": {
@@ -95,7 +95,7 @@
     "jss-vendor-prefixer": "4.0.0",
     "lodash": "4.17.4",
     "pace-progress": "1.0.2",
-    "raven-js": "3.10.0",
+    "raven-js": "3.11.0",
     "react": "15.4.2",
     "react-dom": "15.4.2",
     "react-notification-system": "0.2.11",

@@ -31,7 +31,7 @@ const entryPoints = {
     'redux',
     'redux-saga'
   ],
-  js: ['./src/scripts/index']
+  app: ['./src/scripts/index']
 };
 
 const rules = [{
@@ -64,14 +64,14 @@ const htmlWebpackPluginSettings = {
 };
 
 const output = {
-  filename: 'js/bundle.js?[hash]'
+  filename: 'js/app.js?[hash]'
 };
 
 const plugins = [
   new webpack.optimize.CommonsChunkPlugin({
     name: 'vendor',
     minChunks: Infinity,
-    filename: 'js/vendor.bundle.js?[hash]'
+    filename: 'js/vendor.js?[hash]'
   }),
   new webpack.DefinePlugin({
       'process.env':{
@@ -127,7 +127,7 @@ if(debug){
 
 
 module.exports = {
-  devtool: debug ? 'cheap-eval-source-map' : 'source-map',
+  devtool: debug ? 'cheap-module-eval-source-map' : 'source-map',
   entry: entryPoints,
   target: 'web',
   output: output,

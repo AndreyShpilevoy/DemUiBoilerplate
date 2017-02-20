@@ -3,17 +3,19 @@ import { ClassNamesPropType } from 'aesthetic';
 import styler from 'styles/styler';
 
 
-const Row = ({ children, classNames }) => {
+const Row = ({ reverse, children, classNames }) => {
   return (
-    <div className={classNames.row}>
+    <div className={reverse ? `${classNames.row} reverse` : classNames.row}>
       {children}
     </div>
   );
 };
 
+const {bool, node} = PropTypes;
 Row.propTypes = {
     classNames: ClassNamesPropType,
-    children: PropTypes.node
+    children: node,
+    reverse: bool
 };
 
 export default styler(() => ({
@@ -23,6 +25,9 @@ export default styler(() => ({
     display: 'flex',
     flex: 'initial',
     flexDirection: 'row',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    '&.reverse': {
+      flexDirection: 'row-reverse'
+    }
   }
 }))(Row);
