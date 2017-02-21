@@ -3,10 +3,13 @@ import { ClassNamesPropType } from 'aesthetic';
 import styler from 'styles/styler';
 
 
-const Row = ({ reverse, children, classNames }) =>
-    <div className={reverse ? `${classNames.row} reverse` : classNames.row}>
-        {children}
-    </div>;
+function Row ({ reverse, children, classNames }) {
+    return (
+        <div className={reverse ? `${classNames.row} reverse` : classNames.row}>
+            {children}
+        </div>
+    );
+}
 
 const {bool, node} = PropTypes;
 Row.propTypes = {

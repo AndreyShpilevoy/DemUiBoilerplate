@@ -3,10 +3,13 @@ import { ClassNamesPropType } from 'aesthetic';
 import styler from 'styles/styler';
 
 
-const Container = ({ fluid, children, classNames }) =>
-    <div className={fluid ? `${classNames.container} fluid` : classNames.container}>
-      {children}
-    </div>;
+function Container({ fluid, children, classNames }){
+    return (
+        <div className={fluid ? `${classNames.container} fluid` : classNames.container}>
+        {children}
+        </div>
+    );
+}
 
 const {bool, node} = PropTypes;
 Container.propTypes = {
