@@ -9,6 +9,7 @@
     ["module-resolver", {
       "root": ["./src/scripts"],
       "alias": {
+        "api": "./src/scripts/api",
         "components": "./src/scripts/components",
         "containers": "./src/scripts/containers",
         "images": "./src/images",

@@ -1,18 +1,19 @@
-import React, {PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
-//import {bindActionCreators} from 'redux';
-//import * as localeActions from 'actions/localeActions';
+import {bindActionCreators} from 'redux';
+import {getLocale} from './layout-reducer';
 import Presentation from './Presentation';
 
 
-class Layout extends React.Component {
+const { node, func } = PropTypes;
+class Layout extends Component {
   static propTypes = {
-    children: PropTypes.node,
-    //actions: PropTypes.object.isRequired
+    children: node,
+    getLocale: func.isRequired
   };
 
   componentDidMount() {
-    //this.props.actions.getLocale();
+    this.props.getLocale();
   }
 
   render(){
@@ -24,4 +25,10 @@ class Layout extends React.Component {
   }
 }
 
-export default connect()(Layout);
+const mapDispatchToProps = dispatch => (
+	bindActionCreators({
+		getLocale
+	}, dispatch)
+);
+
+export default connect(() => {}, mapDispatchToProps)(Layout);

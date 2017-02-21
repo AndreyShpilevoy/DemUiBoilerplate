@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 import Row from 'components/Row';
 import Container from 'components/Container';
 import Column from 'components/Column';
@@ -7,8 +7,8 @@ import Hidden from 'components/Hidden';
 const Presentation = ({children}) => (
     <div>
         <Row>
-            <Hidden>{ 'default test' }</Hidden>
-            <Container>{ 'default test' }</Container>
+            <Hidden>{'default test'}</Hidden>
+            <Container>{'default test'}</Container>
         </Row>
         {children}
         <Row>

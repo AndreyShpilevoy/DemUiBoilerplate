@@ -1,20 +1,19 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-//import rootReducer from 'reducers/rootReducer';
-import { routerReducer } from 'react-router-redux';
 import crashReporter from '../middlewares/crashReporterMiddleware';
+import rootReducer from './rootReducer';
+import rootSaga from './rootSaga';
 
 
 export default function configureStore() {
     const sagaMiddleware = createSagaMiddleware();
     const store = createStore(
-        //rootReducer,
-        combineReducers({routing: routerReducer}),
+        rootReducer,
         applyMiddleware(
           crashReporter,
           sagaMiddleware
         )
     );
-    store.runSaga = sagaMiddleware.run;
+    sagaMiddleware.run(rootSaga);
     return store;
 }
