@@ -7,28 +7,28 @@ import Presentation from './Presentation';
 
 const { node, func } = PropTypes;
 class Layout extends Component {
-  static propTypes = {
-    children: node,
-    getLocale: func.isRequired
-  };
+    static propTypes = {
+        children: node,
+        getLocale: func.isRequired
+    };
 
-  componentDidMount() {
-    this.props.getLocale();
-  }
+    componentDidMount() {
+        this.props.getLocale();
+    }
 
-  render(){
-    return(
+    render(){
+        return(
       <Presentation
         children={this.props.children}
         theme={'default'}/>
-    );
-  }
+        );
+    }
 }
 
 const mapDispatchToProps = dispatch => (
 	bindActionCreators({
-		getLocale
-	}, dispatch)
+    getLocale
+}, dispatch)
 );
 
 export default connect(() => {}, mapDispatchToProps)(Layout);

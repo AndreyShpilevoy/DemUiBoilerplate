@@ -5,21 +5,21 @@ import {connect} from 'react-redux';
 import Presentation from './Presentation';
 
 class Conference extends React.Component {
-  static propTypes = {
-    children: PropTypes.node,
+    static propTypes = {
+        children: PropTypes.node,
     //actions: PropTypes.object.isRequired
-  };
+    };
 
-  componentDidMount() {
+    componentDidMount() {
     //this.props.actions.getLocale();
-  }
+    }
 
-  render(){
-    return(
+    render(){
+        return(
       <Presentation
         children={this.props.children}/>
-    );
-  }
+        );
+    }
 }
 
 export default connect()(Conference);

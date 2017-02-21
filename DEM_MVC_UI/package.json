@@ -12,9 +12,10 @@
     "setDevEnv": "npm config set production false && npm config set dev true",
     "setProdEnv": "npm config set production true && npm config set dev false",
     "clean-wwwroot": "rimraf ../DEM_MVC/wwwroot && mkdirp ../DEM_MVC/wwwroot",
-    "lint": "node_modules/.bin/eslint --color webpack.config.* src tools",
+    "lint": "eslint --color webpack.config.* src tools",
+    "lint-fix": "eslint --fix --color webpack.config.* src tools",
     "test": "cross-env BABEL_ENV=test jest --no-cache",
-    "prebuild": "yarn run clean-wwwroot && yarn run test",
+    "prebuild": "yarn run clean-wwwroot && yarn run lint && yarn run test",
     "build": "cross-env BABEL_ENV=production babel-node tools/distServer.js",
     "prestart": "yarn run test",
     "start": "cross-env BABEL_ENV=development babel-node tools/srcServer.js"

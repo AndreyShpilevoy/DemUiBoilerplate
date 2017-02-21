@@ -16,15 +16,15 @@ Row.propTypes = {
 };
 
 export default styler(() => ({
-  row: {
-    width: '100%',
-    boxSizing: 'border-box',
-    display: 'flex',
-    flex: 'initial',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    '&.reverse': {
-      flexDirection: 'row-reverse'
+    row: {
+        width: '100%',
+        boxSizing: 'border-box',
+        display: 'flex',
+        flex: 'initial',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        '&.reverse': {
+            flexDirection: 'row-reverse'
+        }
     }
-  }
 }))(Row);

@@ -1,5 +1,5 @@
 const result = {
-	locale: 'ru'
+    locale: 'ru'
 };
 
 export default result;

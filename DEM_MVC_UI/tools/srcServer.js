@@ -16,20 +16,20 @@ const host = 'localhost';
 const app = express();
 const compiler = webpack(webpackConfig);
 const middleware = webpackDevMiddleware(compiler, {
-  contentBase: `http://${host}:${port}`,
-  quiet: false,
-  noInfo: false,
-  hot: true,
-  publicPath: webpackConfig.output.publicPath,
-  stats: {
-    assets: true,
-    colors: true,
-    version: false,
-    hash: false,
-    timings: true,
-    chunks: false,
-    chunkModules: false
-  }
+    contentBase: `http://${host}:${port}`,
+    quiet: false,
+    noInfo: false,
+    hot: true,
+    publicPath: webpackConfig.output.publicPath,
+    stats: {
+        assets: true,
+        colors: true,
+        version: false,
+        hash: false,
+        timings: true,
+        chunks: false,
+        chunkModules: false
+    }
 });
 
 app.use(middleware);
@@ -41,13 +41,13 @@ const newValue = content.replace(/(?:<%(.*)%>)/g, '')
   .replace(/src=""/g, 'src="/js/vendor.bundle.js"></script><script type="text/javascript" src="/js/bundle.js"');
 
 app.get('*', (req, res) => {
-  res.send(newValue);
+    res.send(newValue);
 });
 
 app.listen(port, (error) => {
-  if (error) {
-    console.log(error.red);
-  } else {
-    open(`http://${host}:${port}`);
-  }
+    if (error) {
+        console.log(error.red);
+    } else {
+        open(`http://${host}:${port}`);
+    }
 });

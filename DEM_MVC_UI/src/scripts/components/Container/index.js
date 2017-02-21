@@ -21,7 +21,7 @@ export const constructStylesFromTheme = ({grid}) =>
             [ `@media (${ current.min })` ]: {
                 container: {
                     width: current.width,
-                        '&.fluid': {
+                    '&.fluid': {
                         marginLeft: 'auto',
                         marginRight: 'auto'
                     }
