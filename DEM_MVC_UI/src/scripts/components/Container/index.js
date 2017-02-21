@@ -1,22 +1,25 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { ClassNamesPropType } from 'aesthetic';
 import styler from 'styles/styler';
 
 
-function Container({ fluid, children, classNames }){
-    return (
-        <div className={fluid ? `${classNames.container} fluid` : classNames.container}>
-        {children}
-        </div>
-    );
-}
-
 const {bool, node} = PropTypes;
-Container.propTypes = {
-    classNames: ClassNamesPropType,
-    children: node,
-    fluid: bool
-};
+class Container extends Component {
+    static propTypes = {
+        classNames: ClassNamesPropType,
+        children: node,
+        fluid: bool
+    };
+    render(){
+        const { fluid, children, classNames } = this.props;
+        debugger;
+        return (
+            <div className={fluid ? `${classNames.container} fluid` : classNames.container}>
+            {children}
+            </div>
+        );
+    }
+}
 
 export const constructStylesFromTheme = ({grid}) =>
     grid.containers.reduce((previouse, current) => (

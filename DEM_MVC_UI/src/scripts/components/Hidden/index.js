@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { ClassNamesPropType } from 'aesthetic';
 import styler from 'styles/styler';
 
@@ -7,31 +7,34 @@ export const constructClassNames = (sizesArray, classNames) =>
         .map((size) => `hidden-${ size.direction }-${ size.name }`)
         .reduce((previouse, current) => `${ previouse } ${ classNames[ current ] }`, '');
 
-function Hidden({ xs, sm, md, lg, xl, children, classNames }) {
-    const classes = constructClassNames([
-        { name: 'xs', direction: xs },
-        { name: 'sm', direction: sm },
-        { name: 'md', direction: md },
-        { name: 'lg', direction: lg },
-        { name: 'xl', direction: xl }], classNames);
-
-    return (
-        <div className={classes}>
-            {children}
-        </div>
-    );
-}
-
 const {node, string} = PropTypes;
-Hidden.propTypes = {
-    classNames: ClassNamesPropType,
-    children: node,
-    xs: string,
-    sm: string,
-    md: string,
-    lg: string,
-    xl: string
-};
+class Hidden extends Component {
+    static propTypes = {
+        classNames: ClassNamesPropType,
+        children: node,
+        xs: string,
+        sm: string,
+        md: string,
+        lg: string,
+        xl: string
+    };
+
+    render(){
+        const { xs, sm, md, lg, xl, children, classNames } = this.props;
+        const classes = constructClassNames([
+            { name: 'xs', direction: xs },
+            { name: 'sm', direction: sm },
+            { name: 'md', direction: md },
+            { name: 'lg', direction: lg },
+            { name: 'xl', direction: xl }], classNames);
+
+        return (
+            <div className={classes}>
+                {children}
+            </div>
+        );
+    }
+}
 
 export const constructStylesFromTheme = ({grid}) =>
     grid.containers.reduce((previouse, current) => (
