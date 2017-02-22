@@ -1,10 +1,14 @@
 import React, {PropTypes} from 'react';
 import { ThemeProvider } from 'aesthetic';
+import Notification from 'containers/Notification';
 
 const Presentation = ({children, theme}) => (
-    <ThemeProvider name={theme}>
-        {children}
-    </ThemeProvider>
+    <div>
+        <ThemeProvider name={theme}>
+            {children}
+        </ThemeProvider>
+        <Notification/>
+    </div>
 );
 
 const {node, string} = PropTypes;

@@ -23,7 +23,7 @@
       "react"
   ],
   "rules": {
-    "indent": [1, 4],
+    "indent": [1, 4, { "SwitchCase": 1 }],
     "max-len": [1, 140, 4, { "ignoreComments": true, "ignoreTrailingComments": true, "ignoreUrls": true, "ignoreRegExpLiterals": true, "ignoreStrings": true }],
     "quotes": [1, "single", { "avoidEscape": true }],
     "no-console": 1,
@@ -47,7 +47,7 @@
     "react/jsx-indent-props": 0,
     "react/jsx-key": 1,
     "react/jsx-max-props-per-line": 0,
-    "react/jsx-no-bind": 1,
+    "react/jsx-no-bind": [1,{"ignoreRefs": true}],
     "react/jsx-no-duplicate-props": 1,
     "react/jsx-no-literals": 1,
     "react/jsx-no-undef": 1,
