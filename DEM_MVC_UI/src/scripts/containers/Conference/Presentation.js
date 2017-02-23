@@ -7,7 +7,7 @@ import Hidden from 'components/Hidden';
 const Presentation = ({children}) => (
     <div>
         <Row>
-            <Hidden xs={'down'} md={'exact'} xl={'up'}>{'default test'}</Hidden>
+            <Hidden>{'default test'}</Hidden>
             <Container>{'default test'}</Container>
         </Row>
         {children}

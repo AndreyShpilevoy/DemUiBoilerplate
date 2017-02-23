@@ -1,24 +1,22 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { ClassNamesPropType } from 'aesthetic';
 import styler from 'styles/styler';
 
 
-const {bool, node} = PropTypes;
-class Row extends Component {
-    static propTypes = {
-        classNames: ClassNamesPropType,
-        children: node,
-        reverse: bool
-    };
-    render() {
-        const { reverse, children, classNames } = this.props;
-        return (
-            <div className={reverse ? `${classNames.row} reverse` : classNames.row}>
-                {children}
-            </div>
-        );
-    }
+function Row ({ reverse, children, classNames }) {
+    return (
+        <div className={reverse ? `${classNames.row} reverse` : classNames.row}>
+            {children}
+        </div>
+    );
 }
+
+const {bool, node} = PropTypes;
+Row.propTypes = {
+    classNames: ClassNamesPropType,
+    children: node,
+    reverse: bool
+};
 
 export default styler(() => ({
     row: {
