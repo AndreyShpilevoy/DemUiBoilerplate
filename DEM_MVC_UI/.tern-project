@@ -1,9 +1,0 @@
-{
-    "ecmaVersion": 6,
-    "libs": [],
-    "plugins": {
-        "complete_strings": {},
-        "node": {},
-        "doc_comment": {}
-    }
-}
