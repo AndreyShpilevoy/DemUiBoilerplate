@@ -12,7 +12,7 @@ class Container extends Component {
     };
     render(){
         const { fluid, children, classNames } = this.props;
-
+        debugger;
         return (
             <div className={fluid ? `${classNames.container} fluid` : classNames.container}>
             {children}
