@@ -8,24 +8,24 @@ const webpack = require('webpack');
 const webpackConfig = require('../webpack.config');
 
 const runExpressServer = () =>
-  new Promise(
-    (resolve, reject) => {
-        const app = express();
-        const port = 60784;
+    new Promise(
+        (resolve, reject) => {
+            const app = express();
+            const port = 60784;
 
-        app.use(express.static('../DEM_MVC'));
-        app.get('*', (req, res) => (res.sendFile(path.join( __dirname, '../../DEM_MVC/wwwroot/index.html'))));
-        app.listen(port, (error) => {
-            if(error) {
-                reject(error);
-            }
-            else {
-                open(`http://localhost:${port}`);
-                resolve('It\'s ready to roll!');
-            }
-        });
-    }
-  );
+            app.use(express.static('../DEM_MVC'));
+            app.get('*', (req, res) => (res.sendFile(path.join(__dirname, '../../DEM_MVC/wwwroot/index.html'))));
+            app.listen(port, (error) => {
+                if (error) {
+                    reject(error);
+                }
+                else {
+                    open(`http://localhost:${port}`);
+                    resolve('It\'s ready to roll!');
+                }
+            });
+        }
+    );
 
 console.log('Generating minified bundle for production via Webpack. This will take a moment...'.green);
 
@@ -47,16 +47,16 @@ webpack(webpackConfig).run((error, stats) => {
         jsonStats.warnings.map(warning => console.log(warning.yellow));
     }
 
-  // if we got this far, the build succeeded.
+    // if we got this far, the build succeeded.
     console.log('Your app is compiled in production mode in ../DEM_MVC/wwwroot.'.green);
     console.log('Starting up Express server...'.green);
     runExpressServer()
-    .then(message => {
-        console.log(message.green);
-        return 0;
-    })
-    .catch(error => {
-        console.log(error.red);
-        return 1;
-    });
+        .then(message => {
+            console.log(message.green);
+            return 0;
+        })
+        .catch(error => {
+            console.log(error.red);
+            return 1;
+        });
 });

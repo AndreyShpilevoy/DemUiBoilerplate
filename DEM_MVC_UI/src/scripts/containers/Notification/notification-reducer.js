@@ -12,7 +12,7 @@ export const addNotification = (notification, level) => (
     {
         type: ADD_NOTIFICATION,
         payload: {
-            notification: {...notification, level, uid: notification.uid || Date.now() }
+            notification: { ...notification, level, uid: notification.uid || Date.now() }
         }
     }
 );
@@ -29,7 +29,7 @@ export const notificationReducer = (state = initialState, {type, payload}) => {
     let localState = state;
     switch (type) {
         case ADD_NOTIFICATION:
-            localState = {...state, notifications: [...localState.notifications, payload.notification]};
+            localState = { ...state, notifications: [...localState.notifications, payload.notification] };
             break;
 
         case REMOVE_NOTIFICATION:

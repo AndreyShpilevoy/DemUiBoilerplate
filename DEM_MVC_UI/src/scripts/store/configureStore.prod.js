@@ -10,8 +10,8 @@ export default function configureStore() {
     const store = createStore(
         rootReducer,
         applyMiddleware(
-          crashReporter,
-          sagaMiddleware
+            crashReporter,
+            sagaMiddleware
         )
     );
     sagaMiddleware.run(rootSaga);

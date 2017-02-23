@@ -9,12 +9,11 @@ import configureStore from './store/configureStore';
 import routes from './routes';
 
 const store = configureStore()();
-//store.runSaga(rootSaga);
 const history = syncHistoryWithStore(browserHistory, store);
 
 render(
     <Provider store={store}>
-        <Router history={history} routes={routes}/>
+        <Router history={history} routes={routes} />
     </Provider>,
-  root.document.getElementById('app')
+    root.document.getElementById('app')
 );

@@ -14,9 +14,9 @@ export default function configureStore() {
         rootReducer,
         root.devToolsExtension && root.devToolsExtension(),
         applyMiddleware(
-          sagaMiddleware,
-          crashReporter,
-          reduxImmutableStateInvariant()
+            sagaMiddleware,
+            crashReporter,
+            reduxImmutableStateInvariant()
         )
     );
     sagaMiddleware.run(rootSaga);

@@ -6,7 +6,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const checksum = require('checksum');
 
-const debug = process.env.BABEL_ENV==='production' ? false : true;
+const debug = process.env.BABEL_ENV === 'production' ? false : true;
 
 const entryPoints = {
     vendor: [
@@ -74,17 +74,17 @@ const plugins = [
         filename: 'js/vendor.js?[hash]'
     }),
     new webpack.DefinePlugin({
-        'process.env':{
+        'process.env': {
             'NODE_ENV': JSON.stringify(process.env.BABEL_ENV)
         }
     }
-  ),
+    ),
     new webpack.LoaderOptionsPlugin({
         debug: debug,
         noInfo: !debug,
         options: {
             context: __dirname,
-            output: {path: './'},
+            output: { path: './' },
             resolveLoader: {
                 alias: {
                     'images': __dirname + './src/images',
@@ -96,7 +96,7 @@ const plugins = [
     new HtmlWebpackPlugin(htmlWebpackPluginSettings)
 ];
 
-if(debug){
+if (debug) {
     entryPoints.vendor.push('webpack-hot-middleware/client?reload=true');
     output.path = '/';
     output.publicPath = '/';
@@ -109,20 +109,20 @@ if(debug){
     output.path = path.join(__dirname, '../DEM_MVC/wwwroot');
     output.publicPath = '/wwwroot/';
     plugins.push(
-    new webpack.NoErrorsPlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-        compress: {warnings: false},
-        output: {comments: false},
-        sourceMap: true
-    }),
-    new CopyWebpackPlugin(
-        [
-        { from: './node_modules/pace-progress/themes/orange/pace-theme-flash.css', to: 'css/pace.css' },
-        { from: './node_modules/pace-progress/pace.min.js', to: 'js/pace.min.js' }
-        ],
-      { copyUnmodified: false }
-    )
-  );
+        new webpack.NoErrorsPlugin(),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: { warnings: false },
+            output: { comments: false },
+            sourceMap: true
+        }),
+        new CopyWebpackPlugin(
+            [
+                { from: './node_modules/pace-progress/themes/orange/pace-theme-flash.css', to: 'css/pace.css' },
+                { from: './node_modules/pace-progress/pace.min.js', to: 'js/pace.min.js' }
+            ],
+            { copyUnmodified: false }
+        )
+    );
 }
 
 
