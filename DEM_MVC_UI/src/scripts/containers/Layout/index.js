@@ -1,7 +1,7 @@
-import React, {Component, PropTypes} from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {getLocale} from './layout-reducer';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { getLocale } from './layout-reducer';
 import Presentation from './Presentation';
 
 
@@ -16,19 +16,19 @@ class Layout extends Component {
         this.props.getLocale();
     }
 
-    render(){
-        return(
-      <Presentation
-        children={this.props.children}
-        theme={'default'}/>
+    render() {
+        return (
+            <Presentation
+                children={this.props.children}
+                theme={'default'} />
         );
     }
 }
 
 const mapDispatchToProps = dispatch => (
-	bindActionCreators({
-    getLocale
-}, dispatch)
+    bindActionCreators({
+        getLocale
+    }, dispatch)
 );
 
-export default connect(() => {}, mapDispatchToProps)(Layout);
+export default connect(null, mapDispatchToProps)(Layout);
