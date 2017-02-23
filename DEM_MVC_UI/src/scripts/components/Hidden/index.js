@@ -7,7 +7,7 @@ export const constructClassNames = (sizesArray, classNames) =>
         .map((size) => `hidden-${ size.direction }-${ size.name }`)
         .reduce((previouse, current) => `${ previouse } ${ classNames[ current ] }`, '');
 
-function Hidden({ xs, sm, md, lg, xl, children, classNames }) {
+const Hidden = ({ xs, sm, md, lg, xl, children, classNames }) => {
     const classes = constructClassNames([
         { name: 'xs', direction: xs },
         { name: 'sm', direction: sm },
@@ -20,7 +20,7 @@ function Hidden({ xs, sm, md, lg, xl, children, classNames }) {
             {children}
         </div>
     );
-}
+};
 
 const {node, string} = PropTypes;
 Hidden.propTypes = {

@@ -7,7 +7,7 @@ export const constructClassNames = (sizesArray, classNames) =>(
         .map((size) => `col-${ size.name }-${ size.count }`)
         .reduce((previouse, current) => `${ previouse } ${ classNames[ current ] }`, ''));
 
-function Column ({xs, sm, md, lg, xl, xsOffset, smOffset, mdOffset, lgOffset, xlOffset, children, classNames }) {
+const Column = ({xs, sm, md, lg, xl, xsOffset, smOffset, mdOffset, lgOffset, xlOffset, children, classNames }) => {
     const classes = constructClassNames([
         { name: 'xs', count: xs },
         { name: 'sm', count: sm },
@@ -25,7 +25,7 @@ function Column ({xs, sm, md, lg, xl, xsOffset, smOffset, mdOffset, lgOffset, xl
             {children}
         </div>
     );
-}
+};
 
 const {node, number} = PropTypes;
 Column.propTypes = {
