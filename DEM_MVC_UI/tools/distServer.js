@@ -13,8 +13,8 @@ const runExpressServer = () =>
             const app = express();
             const port = 60784;
 
-            app.use(express.static('../DEM_MVC'));
-            app.get('*', (req, res) => (res.sendFile(path.join(__dirname, '../../DEM_MVC/wwwroot/index.html'))));
+            app.use(express.static('../dem-afterlife'));
+            app.get('*', (req, res) => (res.sendFile(path.join(__dirname, '../../dem-afterlife/wwwroot/index.html'))));
             app.listen(port, (error) => {
                 if (error) {
                     reject(error);
@@ -48,7 +48,7 @@ webpack(webpackConfig).run((error, stats) => {
     }
 
     // if we got this far, the build succeeded.
-    console.log('Your app is compiled in production mode in ../DEM_MVC/wwwroot.'.green);
+    console.log('Your app is compiled in production mode in ../dem-afterlife/wwwroot.'.green);
     console.log('Starting up Express server...'.green);
     runExpressServer()
         .then(message => {

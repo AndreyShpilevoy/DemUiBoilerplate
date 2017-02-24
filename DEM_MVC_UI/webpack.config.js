@@ -31,14 +31,14 @@ const entryPoints = {
         'redux',
         'redux-saga'
     ],
-    app: ['./src/scripts/index']
+    app: [ './src/scripts/index' ]
 };
 
-const rules = [{
+const rules = [ {
     test: /\.jsx$|\.js$/,
     exclude: /(node_modules)/,
     include: path.join(__dirname, './src'),
-    use: ['babel-loader']
+    use: [ 'babel-loader' ]
 },
 {
     test: /\.(jpe?g|png|gif|svg)$/i,
@@ -55,12 +55,6 @@ const rules = [{
 const eslint = {
     failOnWarning: false,
     failOnError: true
-};
-
-const htmlWebpackPluginSettings = {
-    hash: !debug,
-    filename: 'index.html',
-    template: path.join(__dirname, './src/index.html'),
 };
 
 const output = {
@@ -92,8 +86,7 @@ const plugins = [
             },
             eslint: eslint
         }
-    }),
-    new HtmlWebpackPlugin(htmlWebpackPluginSettings)
+    })
 ];
 
 if (debug) {
@@ -102,11 +95,7 @@ if (debug) {
     output.publicPath = '/';
     plugins.push(new webpack.HotModuleReplacementPlugin());
 } else {
-    htmlWebpackPluginSettings.path = path.join(__dirname, '../DEM_MVC/wwwroot');
-    htmlWebpackPluginSettings.publicPath = '/wwwroot/';
-    htmlWebpackPluginSettings.paceCss = '/wwwroot/css/pace.css?' + checksum('./node_modules/pace-progress/themes/orange/pace-theme-flash.css');
-    htmlWebpackPluginSettings.paceJs = '/wwwroot/js/pace.min.js?' + checksum('./node_modules/pace-progress/pace.min.js');
-    output.path = path.join(__dirname, '../DEM_MVC/wwwroot');
+    output.path = path.join(__dirname, '../dem-afterlife/wwwroot');
     output.publicPath = '/wwwroot/';
     plugins.push(
         new webpack.NoErrorsPlugin(),
@@ -121,7 +110,16 @@ if (debug) {
                 { from: './node_modules/pace-progress/pace.min.js', to: 'js/pace.min.js' }
             ],
             { copyUnmodified: false }
-        )
+        ),
+        new HtmlWebpackPlugin({
+            hash: !debug,
+            filename: 'index.html',
+            template: path.join(__dirname, './src/index.html'),
+            path: path.join(__dirname, '../dem-afterlife/wwwroot'),
+            publicPath: '/wwwroot/',
+            paceCss: '/wwwroot/css/pace.css?' + checksum('./node_modules/pace-progress/themes/orange/pace-theme-flash.css'),
+            paceJs: '/wwwroot/js/pace.min.js?' + checksum('./node_modules/pace-progress/pace.min.js'),
+        })
     );
 }
 
