@@ -6,13 +6,13 @@ import Hidden from 'components/Hidden';
 
 const Presentation = ({children}) => (
     <div>
-        <Row>
-            <Hidden md={'exact'}>{'default test'}</Hidden>
-            <Container>{'default test'}</Container>
+        <Row className={'Row-test'}>
+            <Hidden className={'Hidden-test'} md={'exact'}>{'default test'}</Hidden>
+            <Container className={'Container-test'}>{'default test'}</Container>
         </Row>
         {children}
-        <Row>
-            <Column xs={1} lg={6} lgOffset={6}>{'ok'}</Column>
+        <Row className={'Row-test'}>
+            <Column className={'Column-test'} xs={1} lg={6} lgOffset={6}>{'ok'}</Column>
         </Row>
     </div>
 );
