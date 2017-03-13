@@ -92,6 +92,7 @@
         "aesthetic": "1.0.1",
         "aesthetic-adapter-jss": "1.0.1",
         "babel-polyfill": "6.23.0",
+        "history": "4.6.0",
         "jss": "6.4.0",
         "jss-camel-case": "3.0.0",
         "jss-default-unit": "5.0.2",
