@@ -6,10 +6,8 @@ import jssDefaultUnit from 'jss-default-unit';
 import jssExpand from 'jss-expand';
 import jssVendorPrefixer from 'jss-vendor-prefixer';
 import jssPropsSort from 'jss-props-sort';
+import defaultUnits from './defaultUnits';
 
-const defaultUnits = {
-    'height': 'rem'
-};
 
 jss.use(jssExtend());
 jss.use(jssNested());
