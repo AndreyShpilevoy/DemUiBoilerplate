@@ -8,12 +8,12 @@ const Presentation = ({children}) => (
     <div>
         <Container className={'Container-test'}>
             <Row className={'Row-test'}>
-                <Hidden className={'Hidden-test'} md={'exact'}>{'default test'}</Hidden>
-                {'default test'}
+                <Hidden className={'Hidden-test'} md={'exact'}>{'Hidden-test'}</Hidden>
+                {'Row-Hidden-test'}
             </Row>
             {children}
             <Row className={'Row-test'}>
-                <Column className={'Column-test'} xs={1} lg={6} lgOffset={6}>{'ok'}</Column>
+                <Column className={'Column-test'} xs={1} lg={6} lgOffset={6}>{'Row-Column-test'}</Column>
             </Row>
         </Container>
     </div>
