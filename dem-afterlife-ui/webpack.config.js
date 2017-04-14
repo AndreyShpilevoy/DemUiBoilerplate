@@ -1,4 +1,4 @@
-/*eslint no-undef: "off"*/
+/* eslint no-undef: "off"*/
 
 const webpack = require('webpack');
 const path = require('path');
@@ -6,7 +6,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const checksum = require('checksum');
 
-const debug = process.env.BABEL_ENV === 'production' ? false : true;
+const debug = process.env.BABEL_ENV !== 'production';
 
 const entryPoints = {
     vendor: [
@@ -22,35 +22,41 @@ const entryPoints = {
         'jss-nested',
         'jss-props-sort',
         'jss-vendor-prefixer',
+        'lodash._root',
+        'lodash.debounce',
+        'lodash.throttle',
+        'prop-types',
+        'ramda',
         'raven-js',
         'react',
         'react-dom',
         'react-notification-system',
         'react-redux',
-        'react-router',
+        'react-router-dom',
         'react-router-redux',
         'redux',
         'redux-saga'
     ],
-    app: [ './src/scripts/index' ]
+    app: ['./src/scripts/index']
 };
 
-const rules = [ {
-    test: /\.jsx$|\.js$/,
-    exclude: /(node_modules)/,
-    include: path.join(__dirname, './src'),
-    use: [ 'babel-loader' ]
-},
-{
-    test: /\.(jpe?g|png|gif|svg)$/i,
-    use: 'url-loader?limit=8192&name=images/[name]-[hash].[ext]'
-},
-{
-    test: /\.jsx$|\.js$/,
-    use: 'eslint-loader',
-    enforce: 'pre',
-    include: path.join(__dirname, './src')
-}
+const rules = [
+    {
+        test: /\.jsx$|\.js$/,
+        exclude: /(node_modules)/,
+        include: path.join(__dirname, './src'),
+        use: ['babel-loader']
+    },
+    {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        use: 'url-loader?limit=8192&name=images/[name]-[hash].[ext]'
+    },
+    {
+        test: /\.jsx$|\.js$/,
+        use: 'eslint-loader',
+        enforce: 'pre',
+        include: path.join(__dirname, './src')
+    }
 ];
 
 const eslint = {
@@ -70,22 +76,22 @@ const plugins = [
     }),
     new webpack.DefinePlugin({
         'process.env': {
-            'NODE_ENV': JSON.stringify(process.env.BABEL_ENV)
+            NODE_ENV: JSON.stringify(process.env.BABEL_ENV)
         }
     }
     ),
     new webpack.LoaderOptionsPlugin({
-        debug: debug,
-        noInfo: !debug,
+        debug,
+        noInfo: ! debug,
         options: {
             context: __dirname,
-            output: { path: './' },
+            output: {path: './'},
             resolveLoader: {
                 alias: {
-                    'images': __dirname + './src/images',
-                },
+                    images: `${__dirname}./src/images`
+                }
             },
-            eslint: eslint
+            eslint
         }
     })
 ];
@@ -101,25 +107,25 @@ if (debug) {
     plugins.push(
         new webpack.NoErrorsPlugin(),
         new webpack.optimize.UglifyJsPlugin({
-            compress: { warnings: false },
-            output: { comments: false },
+            compress: {warnings: false},
+            output: {comments: false},
             sourceMap: true
         }),
         new CopyWebpackPlugin(
             [
-                { from: './node_modules/pace-progress/themes/orange/pace-theme-flash.css', to: 'css/pace.css' },
-                { from: './node_modules/pace-progress/pace.min.js', to: 'js/pace.min.js' }
+                {from: './node_modules/pace-progress/themes/orange/pace-theme-flash.css', to: 'css/pace.css'},
+                {from: './node_modules/pace-progress/pace.min.js', to: 'js/pace.min.js'}
             ],
-            { copyUnmodified: false }
+            {copyUnmodified: false}
         ),
         new HtmlWebpackPlugin({
-            hash: !debug,
+            hash: ! debug,
             filename: 'index.html',
             template: path.join(__dirname, './src/index.html'),
             path: path.join(__dirname, '../dem-afterlife/wwwroot'),
             publicPath: '/wwwroot/',
-            paceCss: '/css/pace.css?' + checksum('./node_modules/pace-progress/themes/orange/pace-theme-flash.css'),
-            paceJs: '/js/pace.min.js?' + checksum('./node_modules/pace-progress/pace.min.js'),
+            paceCss: `/css/pace.css?${checksum('./node_modules/pace-progress/themes/orange/pace-theme-flash.css')}`,
+            paceJs: `/js/pace.min.js?${checksum('./node_modules/pace-progress/pace.min.js')}`
         })
     );
 }
@@ -129,9 +135,9 @@ module.exports = {
     devtool: debug ? 'cheap-module-eval-source-map' : 'source-map',
     entry: entryPoints,
     target: 'web',
-    output: output,
+    output,
     module: {
-        rules: rules
+        rules
     },
-    plugins: plugins
+    plugins
 };

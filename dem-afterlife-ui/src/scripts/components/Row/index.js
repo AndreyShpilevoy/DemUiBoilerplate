@@ -1,25 +1,22 @@
-import React, { PropTypes } from 'react';
-import { ClassNamesPropType } from 'aesthetic';
+import React from 'react';
+import {bool, node, string} from 'prop-types';
+import {ClassNamesPropType} from 'aesthetic';
 import styler from 'styles/styler';
 import calculateStyles from './calculateStyles';
 
-const constructClassNameString = (reverse, className, classNames) => {
-    let result = reverse ? `${classNames.row} reverse` : classNames.row;
-    result = className ? `${result} ${className}` : result;
-    return result;
-};
+const constructClassNameString = (reverse, classNames) =>
+    reverse ? `${classNames.row} reverse` : classNames.row;
 
-const Row = ({ reverse, children, className, classNames }) =>
-    <div className={constructClassNameString(reverse, className, classNames)}>
+export const RowPure = ({reverse, children, classNames, className}) =>
+    <div className={`${constructClassNameString(reverse, classNames)} ${className || ''}`}>
         {children}
     </div>;
 
-const {bool, node, string} = PropTypes;
-Row.propTypes = {
+RowPure.propTypes = {
     className: string,
     classNames: ClassNamesPropType,
     children: node,
     reverse: bool
 };
 
-export default styler((theme) => (calculateStyles(theme)))(Row);
+export default styler(theme => calculateStyles(theme))(RowPure);

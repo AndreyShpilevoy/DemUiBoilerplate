@@ -38,7 +38,7 @@ const defaultTheme = {
                 mediaMinString: 'min-width: 1200px',
                 mediaMaxString: 'max-width: 100vw',
                 width: '1140px'
-            },
+            }
         ]
     },
     header: {

@@ -1,30 +1,32 @@
-import React, { PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import NotificationSystem from 'react-notification-system';
-import { removeNotification } from './notification-reducer';
+/* eslint fp/no-class: 0, fp/no-nil: 0, fp/no-unused-expression: 0, fp/no-mutation: 0, fp/no-this: 0*/
 
-const {func} = PropTypes;
-class Notification extends React.Component {
+import React from 'react';
+import {func, arrayOf, node, string, number, bool, object, oneOfType, shape} from 'prop-types';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import NotificationSystem from 'react-notification-system';
+import {removeNotification as removeNotificationAction} from './notification-reducer';
+
+export class NotificationPure extends React.Component {
     static propTypes = {
-        notifications: PropTypes.arrayOf(
-            PropTypes.shape({
-                message: PropTypes.node.isRequired,
-                level: PropTypes.string.isRequired,
-                title: PropTypes.string,
-                position: PropTypes.string,
-                autoDismiss: PropTypes.number,
-                dismissible: PropTypes.bool,
-                action: PropTypes.object,
-                children: PropTypes.node,
-                onAdd: PropTypes.func,
-                onRemove: PropTypes.func,
-                uid: PropTypes.oneOfType([
-                    PropTypes.string,
-                    PropTypes.number,
+        notifications: arrayOf(
+            shape({
+                message: node.isRequired,
+                level: string.isRequired,
+                title: string,
+                position: string,
+                autoDismiss: number,
+                dismissible: bool,
+                action: object,
+                children: node,
+                onAdd: func,
+                onRemove: func,
+                uid: oneOfType([
+                    string,
+                    number
                 ])
             })
-        ).isRequired,
+        ),
         removeNotification: func.isRequired
     };
 
@@ -37,35 +39,34 @@ class Notification extends React.Component {
             removeNotification: notifSysRemove
         } = this.notifSys;
 
-        //check and remove from screen all notifications than not in the store anymore
+        // check and remove from screen all notifications than not in the store anymore
         notifSysState.notifications.forEach(notification => {
             if (notificationsIdArray.indexOf(notification.uid) < 0) {
                 notifSysRemove(notification.uid);
             }
         });
 
-        //create notification in NotificationSystem with overriden "onRemove" event
-        //onRemove will be called on Removing of created notification
-        //onRemove will call action removeNotification from Notification component
-        //and will delete this notification fom the store
+        // create notification in NotificationSystem with overriden "onRemove" event
+        // onRemove will be called on Removing of created notification
+        // onRemove will call action removeNotification from NotificationPure component
+        // and will delete this notification fom the store
         notifications.forEach(notification => {
-            notifSysAdd({ ...notification, onRemove: () => { removeNotification(notification.uid); } });
+            notifSysAdd({...notification, onRemove: () => { removeNotification(notification.uid); }});
         });
     }
 
     render() {
         return (
-            <NotificationSystem ref={(component) => { this.notifSys = component; }} />
+            <NotificationSystem ref={component => { this.notifSys = component; }} />
         );
     }
 }
 
-const mapStateToProps = ({notificationReducer}) => ({ notifications: notificationReducer.notifications });
+const mapStateToProps = ({notificationReducer}) => ({notifications: notificationReducer.notifications});
 
-const mapDispatchToProps = dispatch => (
+const mapDispatchToProps = dispatch =>
     bindActionCreators({
-        removeNotification
-    }, dispatch)
-);
+        removeNotification: removeNotificationAction
+    }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Notification);
+export default connect(mapStateToProps, mapDispatchToProps)(NotificationPure);

@@ -9,7 +9,5 @@ export default function configureStore() {
     } else if (process.env.NODE_ENV === 'development') {
         return configureStoreDev;
     }
-    else {
-        throw `Store for '${process.env.NODE_ENV}' not found`;
-    }
+    throw new Error(`Store for '${process.env.NODE_ENV}' not found`);
 }

@@ -1,18 +1,15 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
+import {node} from 'prop-types';
 import {connect} from 'react-redux';
 import Presentation from './Presentation';
 
-class Conference extends React.Component {
-    static propTypes = {
-        children: PropTypes.node,
-    };
+const Conference = ({children}) =>
+    <Presentation>
+        {children}
+    </Presentation>;
 
-    render(){
-        return(
-      <Presentation
-        children={this.props.children}/>
-        );
-    }
-}
+Conference.propTypes = {
+    children: node
+};
 
 export default connect()(Conference);

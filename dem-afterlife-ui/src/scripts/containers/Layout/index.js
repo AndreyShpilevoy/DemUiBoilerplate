@@ -1,11 +1,12 @@
-import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { getLocale } from './layout-reducer';
+/* eslint fp/no-class: 0, fp/no-nil: 0, fp/no-unused-expression: 0, fp/no-mutation: 0, fp/no-this: 0*/
+
+import React, {Component} from 'react';
+import {node, func} from 'prop-types';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {getLocale} from './layout-reducer';
 import Presentation from './Presentation';
 
-
-const { node, func } = PropTypes;
 class Layout extends Component {
     static propTypes = {
         children: node,
@@ -18,17 +19,16 @@ class Layout extends Component {
 
     render() {
         return (
-            <Presentation
-                children={this.props.children}
-                theme={'default'} />
+            <Presentation theme={ 'default' }>
+                {this.props.children}
+            </Presentation>
         );
     }
 }
 
-const mapDispatchToProps = dispatch => (
+const mapDispatchToProps = dispatch =>
     bindActionCreators({
         getLocale
-    }, dispatch)
-);
+    }, dispatch);
 
 export default connect(null, mapDispatchToProps)(Layout);

@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Conference Presentation component match expected snapshot 1`] = `
+<div>
+  <Aesthetic-ContainerPure
+    className="Container-test"
+  >
+    <Aesthetic-RowPure
+      className="Row-test"
+    >
+      <Aesthetic-HiddenPure
+        className="Hidden-test"
+        md="exact"
+      >
+        Hidden-test
+      </Aesthetic-HiddenPure>
+      Row-Hidden-test
+    </Aesthetic-RowPure>
+    <div>
+      Conference Presentation content
+    </div>
+    <Aesthetic-RowPure
+      className="Row-test"
+    >
+      <Aesthetic-ColumnPure
+        className="Column-test"
+        lg={6}
+        lgOffset={6}
+        xs={1}
+      >
+        Row-Column-test
+      </Aesthetic-ColumnPure>
+    </Aesthetic-RowPure>
+  </Aesthetic-ContainerPure>
+</div>
+`;

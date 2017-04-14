@@ -1,10 +1,11 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import {node} from 'prop-types';
 import Row from 'components/Row';
 import Container from 'components/Container';
 import Column from 'components/Column';
 import Hidden from 'components/Hidden';
 
-const Presentation = ({children}) => (
+const Presentation = ({children}) =>
     <div>
         <Container className={'Container-test'}>
             <Row className={'Row-test'}>
@@ -16,10 +17,9 @@ const Presentation = ({children}) => (
                 <Column className={'Column-test'} xs={1} lg={6} lgOffset={6}>{'Row-Column-test'}</Column>
             </Row>
         </Container>
-    </div>
-);
+    </div>;
 Presentation.propTypes = {
-    children: PropTypes.node
+    children: node
 };
 
 export default Presentation;

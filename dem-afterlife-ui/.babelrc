@@ -25,7 +25,8 @@
                     "images": "./src/images",
                     "smiles": "./src/images/smiles",
                     "styles": "./src/scripts/styles",
-                    "utils": "./src/scripts/utils"
+                    "utils": "./src/scripts/utils",
+                    "tools": "./tools"
                 }
             }
         ]
@@ -39,6 +40,7 @@
         "production": {
             "plugins": [
                 "transform-react-remove-prop-types",
+                "ramda",
                 "lodash"
             ]
         },

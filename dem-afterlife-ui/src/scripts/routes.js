@@ -1,17 +1,16 @@
-/* eslint react/jsx-no-bind: 'off' */
-
 import React from 'react';
-import Route from 'react-router/Route';
+import Route from 'react-router-dom/Route';
 import Layout from 'containers/Layout';
 import Conference from 'containers/Conference';
 
-export default (
+const router = () =>
     <Layout>
-        <Route render={() => (
+        <Route render={() =>
             <div>
                 <Route exact path='/' component={Conference} />
                 <Route path='/Conference' component={Conference} />
             </div>
-        )} />
-    </Layout>
-);
+        } />
+    </Layout>;
+
+export default router();
